@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'first_screen.dart';
+import 'home_screen.dart';
 import 'second_screen.dart';
 import 'third_screen.dart';
 
@@ -31,17 +32,25 @@ class _NavScreenState extends State<NavScreen> {
           Padding(
             padding: const EdgeInsets.only(right: 16.0),
             child: Center(
-              child: GestureDetector(
-                onTap: () {
-                  // Pular para a última tela
-                  _pageController.jumpToPage(2);
+              // Botão "Já tem uma conta?"
+             child: TextButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => HomeScreen(),
+                    ),
+                  );
                 },
-                child: const Text(
+                child: Text(
                   'Pular',
                   style: TextStyle(
                     color: Colors.grey,
-                    fontSize: 16,
+                    fontSize: 17,
                   ),
+                ),
+                style: TextButton.styleFrom(
+                  backgroundColor: const Color(0xFF1D1D1D), // Cor do fundo
                 ),
               ),
             ),
