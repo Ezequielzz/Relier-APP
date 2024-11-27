@@ -1,39 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:relier/service_screen.dart';
 
-class FloatingNavBarScreen extends StatefulWidget {
-  @override
-  _FloatingNavBarScreenState createState() => _FloatingNavBarScreenState();
-}
+class CustomNavBar extends StatelessWidget {
+  final int selectedIndex;
+  final ValueChanged<int> onItemTapped;
 
-class _FloatingNavBarScreenState extends State<FloatingNavBarScreen> {
-  int _selectedIndex = 0;
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
+  const CustomNavBar({
+    Key? key,
+    required this.selectedIndex,
+    required this.onItemTapped,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color(0xFF292929), // Fundo escuro
-      body: Center(
-        child: Text(
-          'Página ${_selectedIndex + 1}',
-          style: const TextStyle(color: Colors.white, fontSize: 24),
-        ),
-      ),
-      bottomNavigationBar: Theme(
-        data: Theme.of(context).copyWith(
-          splashFactory: NoSplash.splashFactory, // Remove o efeito splash
-          highlightColor: Colors.transparent,   // Remove o destaque ao clicar
-        ),
-        child: Container(
-          margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+    return Stack(
+      clipBehavior: Clip.none,
+      children: [
+        // Barra de navegação personalizada
+        Container(
+          margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          height: 70,
           decoration: BoxDecoration(
             color: const Color(0xFF1F1F1F),
-            borderRadius: BorderRadius.circular(30),
+            borderRadius: BorderRadius.circular(37),
             boxShadow: [
               BoxShadow(
                 color: Colors.black.withOpacity(0.5),
@@ -42,35 +32,73 @@ class _FloatingNavBarScreenState extends State<FloatingNavBarScreen> {
               ),
             ],
           ),
-          child: BottomNavigationBar(
-            currentIndex: _selectedIndex,
-            onTap: _onItemTapped,
-            backgroundColor: Colors.transparent,
-            elevation: 0,
-            type: BottomNavigationBarType.fixed,
-            selectedItemColor: const Color(0xFF5A5AFF),
-            unselectedItemColor: const Color(0xFFCDCDCD),
-            showUnselectedLabels: true,
-            items: const [
-              BottomNavigationBarItem(
-                icon: Icon(Icons.home),
-                label: 'Home',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.search),
-                label: 'Buscar',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.favorite),
-                label: 'Favoritos',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.person),
-                label: 'Perfil',
-              ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              _buildNavItem(Icons.home, 'Home', 0),
+              _buildNavItem(Icons.wallet, 'Serviços', 1),
+              SizedBox(width: 50), // Espaço para o ícone central
+              _buildNavItem(Icons.chat_bubble_outline, 'Conversas', 2),
+              _buildNavItem(Icons.person, 'Perfil', 3),
             ],
           ),
         ),
+        // Ícone central flutuante
+        Positioned(
+          top: 25, // Eleva o botão central
+          left: MediaQuery.of(context).size.width / 2 - 35,
+          child: GestureDetector(
+            onTap: () {
+              // Navegue para a nova tela
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => ServicesPage()),
+              );
+            },
+            child: Container(
+              width: 60,
+              height: 60,
+              decoration: BoxDecoration(
+                color: const Color(0xFF5A5AFF),
+                shape: BoxShape.circle,
+              ),
+              child: Center(
+                child: Image.asset(
+                  'assets/images/relierLogoBg.png', // Substitua pelo caminho do seu ícone
+                  width: 80,
+                  height: 80,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+          ),
+        )
+      ],
+    );
+  }
+
+  Widget _buildNavItem(IconData icon, String label, int index) {
+    return GestureDetector(
+      onTap: () => onItemTapped(index),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(
+            icon,
+            color: selectedIndex == index
+                ? const Color(0xFF5A5AFF)
+                : const Color(0xFFCDCDCD),
+          ),
+          Text(
+            label,
+            style: TextStyle(
+              color: selectedIndex == index
+                  ? const Color(0xFF5A5AFF)
+                  : const Color(0xFFCDCDCD),
+              fontSize: 12,
+            ),
+          ),
+        ],
       ),
     );
   }
