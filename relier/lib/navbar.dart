@@ -48,13 +48,6 @@ class CustomNavBar extends StatelessWidget {
           top: 25, // Eleva o botão central
           left: MediaQuery.of(context).size.width / 2 - 35,
           child: GestureDetector(
-            onTap: () {
-              // Navegue para a nova tela
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => ServicesPage()),
-              );
-            },
             child: Container(
               width: 60,
               height: 60,
