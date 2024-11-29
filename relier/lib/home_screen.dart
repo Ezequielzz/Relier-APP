@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:relier/navbar.dart';
 import 'package:relier/problem1_screen.dart';
-import 'package:relier/service_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -11,20 +9,8 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 0;
 
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-
-    // A lógica de navegação pode ser adicionada aqui.
-    // Exemplo: Redirecionar para outra tela.
-    if (index == 1) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => ServiceScreen()),
-      );
-    }
-  }
+  // Controlador para a visualização das paginas na navbar
+  final PageController _pageController = PageController();
 
   @override
   Widget build(BuildContext context) {
@@ -45,17 +31,13 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
       ),
-      bottomNavigationBar: CustomNavBar(
-        selectedIndex: _selectedIndex,
-        onItemTapped: _onItemTapped,
-      ),
     );
   }
 
   Widget _buildHeader() {
     return Container(
       width: double.infinity,
-      height: 217,
+      height: 200,
       decoration: BoxDecoration(
         color: const Color(0xFF1F1F1F),
         borderRadius: const BorderRadius.only(
@@ -107,10 +89,22 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget _buildServiceGrid() {
     final List<Map<String, dynamic>> cardData = [
-      {'icon': Icons.construction, 'color': Colors.blue[600], 'label': 'Construções\n& Obras'},
-      {'icon': Icons.plumbing, 'color': Colors.blue[600], 'label': 'Encanamento'},
+      {
+        'icon': Icons.construction,
+        'color': Colors.blue[600],
+        'label': 'Construções\n& Obras'
+      },
+      {
+        'icon': Icons.plumbing,
+        'color': Colors.blue[600],
+        'label': 'Encanamento'
+      },
       {'icon': Icons.eco, 'color': Colors.blue[600], 'label': 'Jardinagem'},
-      {'icon': Icons.format_paint, 'color': Colors.blue[600], 'label': 'Pinturas'},
+      {
+        'icon': Icons.format_paint,
+        'color': Colors.blue[600],
+        'label': 'Pinturas'
+      },
       {'icon': Icons.bolt, 'color': Colors.blue[600], 'label': 'Elétrica'},
       {'icon': Icons.layers, 'color': Colors.blue[600], 'label': 'Outros'},
     ];

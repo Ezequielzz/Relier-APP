@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'first_screen.dart';
 import 'home_screen.dart';
+import 'navbar.dart';
 import 'second_screen.dart';
 import 'third_screen.dart';
 
@@ -25,7 +26,7 @@ class _NavScreenState extends State<NavScreen> {
           padding: const EdgeInsets.only(right: 55.0),
           child: Image.asset(
             'assets/images/relierLogoBg(1).png',
-            height: 150,
+            height: 90,
           ),
         ),
         actions: [
@@ -38,7 +39,7 @@ class _NavScreenState extends State<NavScreen> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => HomeScreen(),
+                      builder: (context) => Navbar(),
                     ),
                   );
                 },

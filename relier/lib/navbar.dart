@@ -1,97 +1,88 @@
 import 'package:flutter/material.dart';
-import 'package:relier/service_screen.dart';
+import 'package:google_nav_bar/google_nav_bar.dart';
+import 'home_screen.dart';
+import 'problem1_screen.dart';
+import 'service_screen.dart';
 
-class CustomNavBar extends StatelessWidget {
-  final int selectedIndex;
-  final ValueChanged<int> onItemTapped;
+class Navbar extends StatefulWidget {
+  @override
+  _NavbarState createState() => _NavbarState();
+}
 
-  const CustomNavBar({
-    Key? key,
-    required this.selectedIndex,
-    required this.onItemTapped,
-  }) : super(key: key);
+class _NavbarState extends State<Navbar> {
+  int _selectedIndex = 0;
+
+  final PageController _pageController = PageController();
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      clipBehavior: Clip.none,
-      children: [
-        // Barra de navegação personalizada
-        Container(
-          margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-          padding: const EdgeInsets.symmetric(horizontal: 20),
-          height: 70,
+    return Scaffold(
+      backgroundColor: const Color(0xFF292929),
+      body: PageView(
+        controller: _pageController,
+        onPageChanged: (index) {
+          setState(() {
+            _selectedIndex = index;
+          });
+        },
+        children: [
+          HomeScreen(), // Tela inicial com cabeçalho e serviços
+          ServiceScreen(), // Tela de serviços
+          // Problem1Screen(), // Exemplo de tela de contatos
+          // ProfileScreen(), // Tela de perfil (você pode criar)
+        ],
+      ),
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.only(bottom: 20, left: 16, right: 16),
+        child: Container(
           decoration: BoxDecoration(
             color: const Color(0xFF1F1F1F),
             borderRadius: BorderRadius.circular(37),
             boxShadow: [
               BoxShadow(
-                color: Colors.black.withOpacity(0.5),
+                color: Colors.black.withOpacity(0.4),
                 blurRadius: 10,
-                offset: const Offset(0, 5),
+                offset: const Offset(0, 4),
               ),
             ],
           ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              _buildNavItem(Icons.home, 'Home', 0),
-              _buildNavItem(Icons.wallet, 'Serviços', 1),
-              SizedBox(width: 50), // Espaço para o ícone central
-              _buildNavItem(Icons.chat_bubble_outline, 'Conversas', 2),
-              _buildNavItem(Icons.person, 'Perfil', 3),
-            ],
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+            child: GNav(
+              backgroundColor: const Color(0xFF1F1F1F),
+              color: Colors.grey,
+              activeColor: const Color(0xFF7696FF),
+              tabBackgroundColor: const Color(0xFF7696FF).withOpacity(0.2),
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+              gap: 8,
+              selectedIndex: _selectedIndex,
+              onTabChange: (index) {
+                setState(() {
+                  _selectedIndex = index;
+                  _pageController.jumpToPage(index);
+                });
+              },
+              tabs: const [
+                GButton(
+                  icon: Icons.home_outlined,
+                  text: 'Início',
+                ),
+                GButton(
+                  icon: Icons.wallet_outlined,
+                  text: 'Serviços',
+                ),
+                GButton(
+                  icon: Icons.chat_bubble_outline,
+                  text: 'Contatos',
+                ),
+                GButton(
+                  icon: Icons.person_outline,
+                  text: 'Perfil',
+                ),
+              ],
+            ),
           ),
         ),
-        // Ícone central flutuante
-        Positioned(
-          top: 25, // Eleva o botão central
-          left: MediaQuery.of(context).size.width / 2 - 35,
-          child: GestureDetector(
-            child: Container(
-              width: 60,
-              height: 60,
-              decoration: BoxDecoration(
-                color: const Color(0xFF5A5AFF),
-                shape: BoxShape.circle,
-              ),
-              child: Center(
-                child: Image.asset(
-                  'assets/images/relierLogoBg.png', // Substitua pelo caminho do seu ícone
-                  width: 80,
-                  height: 80,
-                  color: Colors.white,
-                ),
-              ),
-            ),
-          ),
-        )
-      ],
-    );
-  }
-
-  Widget _buildNavItem(IconData icon, String label, int index) {
-    return GestureDetector(
-      onTap: () => onItemTapped(index),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Icon(
-            icon,
-            color: selectedIndex == index
-                ? const Color(0xFF5A5AFF)
-                : const Color(0xFFCDCDCD),
-          ),
-          Text(
-            label,
-            style: TextStyle(
-              color: selectedIndex == index
-                  ? const Color(0xFF5A5AFF)
-                  : const Color(0xFFCDCDCD),
-              fontSize: 12,
-            ),
-          ),
-        ],
       ),
     );
   }
