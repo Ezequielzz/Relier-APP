@@ -24,9 +24,12 @@ class _NavScreenState extends State<NavScreen> {
         leadingWidth: 140,
         leading: Padding(
           padding: const EdgeInsets.only(right: 55.0),
-          child: Image.asset(
-            'assets/images/relierLogoBg(1).png',
-            height: 90,
+          child: SizedBox(
+            height: 30,
+            child: Image.asset(
+              'assets/images/relierLogoBg(1).png',
+              fit: BoxFit.contain,
+            ),
           ),
         ),
         actions: [

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:relier/screen/agendamento_screen.dart';
+import 'package:relier/screen/profile_screen.dart';
 import 'home_screen.dart';
 import 'problem1_screen.dart';
 import 'service_screen.dart';
@@ -27,9 +29,9 @@ class _NavbarState extends State<Navbar> {
         },
         children: [
           HomeScreen(), // Tela inicial com cabeçalho e serviços
-          ServiceScreen(), // Tela de serviços
+          AgendamentoScreen(), // Tela de serviços
           // Problem1Screen(), // Exemplo de tela de contatos
-          // ProfileScreen(), // Tela de perfil (você pode criar)
+          ProfileScreen(), // Tela de perfil (você pode criar)
         ],
       ),
       bottomNavigationBar: Padding(
@@ -47,7 +49,7 @@ class _NavbarState extends State<Navbar> {
             ],
           ),
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
             child: GNav(
               backgroundColor: const Color(0xFF1F1F1F),
               color: Colors.grey,
@@ -59,7 +61,11 @@ class _NavbarState extends State<Navbar> {
               onTabChange: (index) {
                 setState(() {
                   _selectedIndex = index;
-                  _pageController.jumpToPage(index);
+                  _pageController.animateToPage(
+                    index,
+                    duration: const Duration(milliseconds: 500), // Tempo da animação
+                    curve: Curves.easeInOut, // Curva de animação
+                  );
                 });
               },
               tabs: const [

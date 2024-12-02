@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:relier/problem5_screen.dart';
+import 'problem5_screen.dart';
 
 class Problem4Screen extends StatefulWidget {
   const Problem4Screen({Key? key}) : super(key: key);
