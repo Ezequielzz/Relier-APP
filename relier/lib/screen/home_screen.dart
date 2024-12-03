@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:relier/screen/problem1_screen.dart';
+import 'package:iconly/iconly.dart';
+
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -90,23 +92,17 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget _buildServiceGrid() {
     final List<Map<String, dynamic>> cardData = [
       {
-        'icon': Icons.construction,
-        'color': Colors.blue[600],
+        'image': 'assets/images/4.png',
         'label': 'Construções\n& Obras'
       },
       {
-        'icon': Icons.plumbing,
-        'color': Colors.blue[600],
+        'image': 'assets/images/3.png',
         'label': 'Encanamento'
       },
-      {'icon': Icons.eco, 'color': Colors.blue[600], 'label': 'Jardinagem'},
-      {
-        'icon': Icons.format_paint,
-        'color': Colors.blue[600],
-        'label': 'Pinturas'
-      },
-      {'icon': Icons.bolt, 'color': Colors.blue[600], 'label': 'Elétrica'},
-      {'icon': Icons.layers, 'color': Colors.blue[600], 'label': 'Outros'},
+      {'image': 'assets/images/6.png', 'label': 'Jardinagem'},
+      {'image': 'assets/images/1.png', 'label': 'Pinturas'},
+      {'image': 'assets/images/5.png', 'label': 'Elétrica'},
+      {'image': 'assets/images/2.png', 'label': 'Outros'},
     ];
 
     return Padding(
@@ -115,17 +111,15 @@ class _HomeScreenState extends State<HomeScreen> {
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 3,
-          crossAxisSpacing: 10,
-          mainAxisSpacing: 10,
-          childAspectRatio: 1,
+          crossAxisCount: 3, // 3 colunas
+          crossAxisSpacing: 10, // Espaçamento horizontal
+          mainAxisSpacing: 10, // Espaçamento vertical
         ),
         itemCount: cardData.length,
         itemBuilder: (BuildContext context, int index) {
           return GestureDetector(
             onTap: () {
               if (cardData[index]['label'] == 'Encanamento') {
-                // Navegar para a página de encanamento
                 Navigator.push(
                   context,
                   MaterialPageRoute(
@@ -133,13 +127,11 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 );
               } else {
-                // Pode exibir uma mensagem ou deixar vazio
                 print('Card ${cardData[index]['label']} clicado!');
               }
             },
             child: buildServiceCard(
-              icon: cardData[index]['icon'],
-              color: cardData[index]['color'],
+              image: cardData[index]['image'],
               label: cardData[index]['label'],
             ),
           );
@@ -230,8 +222,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget buildServiceCard({
-    required IconData icon,
-    required Color color,
+    required String image,
     required String label,
   }) {
     return Container(
@@ -239,31 +230,33 @@ class _HomeScreenState extends State<HomeScreen> {
         color: const Color(0xFF1F1F1F),
         borderRadius: BorderRadius.circular(12),
       ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Icon(
-              icon,
-              color: color,
-              size: 40,
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween, // Espaçamento entre os elementos
+          crossAxisAlignment: CrossAxisAlignment.start, // Alinhamento à esquerda
+          children: [
+            // Imagem no topo
+            Align(
+              alignment: Alignment.topLeft,
+              child: Image.asset(
+                image,
+                width: 40,
+                height: 40,
+                fit: BoxFit.contain,
+              ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 8.0, bottom: 8.0),
-            child: Text(
+            // Texto na base
+            Text(
               label,
-              textAlign: TextAlign.left,
               style: const TextStyle(
                 color: Colors.white,
-                fontSize: 16,
+                fontSize: 14,
                 fontWeight: FontWeight.w500,
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

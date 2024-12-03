@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:relier/screen/agendamento_screen.dart';
+import 'package:relier/screen/conversas_screen.dart';
 import 'package:relier/screen/profile_screen.dart';
 import 'home_screen.dart';
 import 'problem1_screen.dart';
-import 'service_screen.dart';
+import 'package:iconly/iconly.dart';
+
 
 class Navbar extends StatefulWidget {
   @override
@@ -30,8 +32,8 @@ class _NavbarState extends State<Navbar> {
         children: [
           HomeScreen(), // Tela inicial com cabeçalho e serviços
           AgendamentoScreen(), // Tela de serviços
-          // Problem1Screen(), // Exemplo de tela de contatos
-          ProfileScreen(), // Tela de perfil (você pode criar)
+          ConversasScreen(), // Tela de contatos
+          ProfileScreen(), // Tela de perfil
         ],
       ),
       bottomNavigationBar: Padding(
@@ -68,21 +70,21 @@ class _NavbarState extends State<Navbar> {
                   );
                 });
               },
-              tabs: const [
+              tabs: [
                 GButton(
-                  icon: Icons.home_outlined,
+                  icon: IconlyLight.home, // Ícone da Iconly
                   text: 'Início',
                 ),
                 GButton(
-                  icon: Icons.wallet_outlined,
+                  icon: IconlyLight.wallet, // Ícone da Iconly
                   text: 'Serviços',
                 ),
                 GButton(
-                  icon: Icons.chat_bubble_outline,
+                  icon: IconlyLight.chat, // Ícone da Iconly
                   text: 'Contatos',
                 ),
                 GButton(
-                  icon: Icons.person_outline,
+                  icon: IconlyLight.profile, // Ícone da Iconly
                   text: 'Perfil',
                 ),
               ],

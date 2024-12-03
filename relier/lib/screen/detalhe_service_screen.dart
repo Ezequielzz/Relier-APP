@@ -1,38 +1,26 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData.dark(),
-      home: const ServicesPage(),
-      debugShowCheckedModeBanner: false,
-    );
-  }
-}
-
-class ServicesPage extends StatelessWidget {
-  const ServicesPage({super.key});
+class DetalheServiceScreen extends StatelessWidget {
+  const DetalheServiceScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xFF292929),
       appBar: AppBar(
-        title: const Text('Serviços'),
+        backgroundColor: const Color(0xFF1F1F1F),
+        title: const Text('Serviços', style: TextStyle(
+          color: Colors.white
+        ),),
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
+          icon: const Icon(Icons.arrow_back, color: Colors.white,),
           onPressed: () {
             // Ação para voltar
           },
         ),
       ),
       body: Padding(
+
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -57,34 +45,35 @@ class ServicesPage extends StatelessWidget {
               child: Container(
                 padding: const EdgeInsets.all(16.0),
                 decoration: BoxDecoration(
-                  color: Colors.grey[900],
+                  color: const Color(0xFF1F1F1F),
                   borderRadius: BorderRadius.circular(16),
                 ),
-                child: Column(
+                child: const Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text(
+                    Text(
                       'Instalação – Encanamento',
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
+                        color: Color(0xFFFFFFFF)
                       ),
                     ),
-                    const SizedBox(height: 20),
-                    const DetailRow(
+                    SizedBox(height: 20),
+                    DetailRow(
                       question: 'O que você precisa instalar?',
                       answer: 'Pontos de uso (torneiras, vasos sanitários)',
                     ),
-                    const DetailRow(
+                    DetailRow(
                       question: 'Qual o local do serviço?',
                       answer: 'Casa',
                     ),
-                    const DetailRow(
+                    DetailRow(
                       question: 'Detalhe o que pretende fazer',
                       answer:
                       'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.',
                     ),
-                    const DetailRow(
+                    DetailRow(
                       question: 'Em que endereço o serviço será realizado?',
                       answer: 'Rua ABC – Bairro DEF, Cidade GHI – 13453-902',
                     ),
@@ -99,10 +88,9 @@ class ServicesPage extends StatelessWidget {
                 onPressed: () {
                   // Ação para enviar mensagem
                 },
-                icon: const Icon(Icons.send),
-                label: const Text('Mensagem'),
+                label: const Text('Candidatar-se', style: TextStyle(color: Colors.black),),
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.blue,
+                  backgroundColor: Color(0xFF7696FF),
                   padding: const EdgeInsets.symmetric(
                     horizontal: 32,
                     vertical: 16,
@@ -137,12 +125,13 @@ class OptionCard extends StatelessWidget {
         Icon(
           icon,
           size: 48,
-          color: Colors.blue,
+          color: Colors.grey,
         ),
         const SizedBox(height: 8),
         Text(
           label,
-          style: const TextStyle(fontSize: 14),
+          style: const TextStyle(fontSize: 14,
+          color: Colors.white),
         ),
       ],
     );
@@ -172,7 +161,7 @@ class DetailRow extends StatelessWidget {
               const Icon(
                 Icons.help_outline,
                 size: 18,
-                color: Colors.grey,
+                  color: Color(0xFF999999)
               ),
               const SizedBox(width: 8),
               Expanded(
@@ -180,7 +169,7 @@ class DetailRow extends StatelessWidget {
                   question,
                   style: const TextStyle(
                     fontSize: 14,
-                    color: Colors.grey,
+                      color: Color(0xFF999999)
                   ),
                 ),
               ),
@@ -191,7 +180,8 @@ class DetailRow extends StatelessWidget {
             padding: const EdgeInsets.only(left: 26.0),
             child: Text(
               answer,
-              style: const TextStyle(fontSize: 14),
+              style: const TextStyle(fontSize: 14,
+                  color: Color(0xFFFFFFFF)),
             ),
           ),
         ],

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:relier/screen/detalhe_service_screen.dart';
 
 class HomeProfissionalScreen extends StatefulWidget {
   @override
@@ -227,8 +228,12 @@ class _HomeProfissionalState extends State<HomeProfissionalScreen> {
           Center(
             child: ElevatedButton(
               onPressed: () {
-                // Ação do botão
-                print('Botão de Detalhes clicado');
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => DetalheServiceScreen(),
+                    ),
+                  );
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: const Color(0xFF7696FF), // Cor de fundo azul
