@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:relier/screen/planos_screen.dart';
 import 'package:relier/screen/problem1_screen.dart';
 import 'package:iconly/iconly.dart';
 
@@ -29,7 +30,7 @@ class _HomeScreenState extends State<HomeScreen> {
             _buildServiceGrid(),
 
             // Card promocional
-            _buildPromoCard(),
+            _buildPromoCard(context),
           ],
         ),
       ),
@@ -140,86 +141,96 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Widget _buildPromoCard() {
+  Widget _buildPromoCard(BuildContext context) {
     return Center(
-      child: Container(
-        width: 355,
-        height: 175,
-        margin: const EdgeInsets.symmetric(vertical: 30, horizontal: 28),
-        decoration: BoxDecoration(
-          color: const Color(0xFF1F1F1F),
-          borderRadius: BorderRadius.circular(20),
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Expanded(
-              flex: 2,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Text(
-                    'Conheça nossos\nplanos feitos para você!',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  Image.asset(
-                    'assets/images/Enthusiastic-bro(1).png',
-                    width: 115,
-                    height: 115,
-                    fit: BoxFit.contain,
-                  ),
-                ],
-              ),
-            ),
-            Expanded(
-              flex: 1,
-              child: Stack(
-                alignment: Alignment.center,
-                children: [
-                  Container(
-                    width: double.infinity,
-                    height: double.infinity,
-                    decoration: const BoxDecoration(
-                      color: Color(0xFF5A5AFF),
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(200),
-                        bottomLeft: Radius.circular(200),
+      child: GestureDetector(
+        onTap: () {
+          // Navega para a nova tela ao clicar no card
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => PlanosScreen()),
+          );
+        },
+        child: Container(
+          width: 355,
+          height: 175,
+          margin: const EdgeInsets.symmetric(vertical: 30, horizontal: 28),
+          decoration: BoxDecoration(
+            color: const Color(0xFF1F1F1F),
+            borderRadius: BorderRadius.circular(20),
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Expanded(
+                flex: 2,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text(
+                      'Conheça nossos\nplanos feitos para você!',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
-                    margin: const EdgeInsets.only(right: 20),
-                  ),
-                  Container(
-                    margin: const EdgeInsets.only(left: 10),
-                    width: 107,
-                    height: double.infinity,
-                    decoration: const BoxDecoration(
-                      color: Color(0xFF7696FF),
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(200),
-                        bottomLeft: Radius.circular(200),
-                        topRight: Radius.circular(27),
-                        bottomRight: Radius.circular(27),
+                    Image.asset(
+                      'assets/images/Enthusiastic-bro(1).png',
+                      width: 115,
+                      height: 115,
+                      fit: BoxFit.contain,
+                    ),
+                  ],
+                ),
+              ),
+              Expanded(
+                flex: 1,
+                child: Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    Container(
+                      width: double.infinity,
+                      height: double.infinity,
+                      decoration: const BoxDecoration(
+                        color: Color(0xFF5A5AFF),
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(200),
+                          bottomLeft: Radius.circular(200),
+                        ),
+                      ),
+                      margin: const EdgeInsets.only(right: 20),
+                    ),
+                    Container(
+                      margin: const EdgeInsets.only(left: 10),
+                      width: 107,
+                      height: double.infinity,
+                      decoration: const BoxDecoration(
+                        color: Color(0xFF7696FF),
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(200),
+                          bottomLeft: Radius.circular(200),
+                          topRight: Radius.circular(27),
+                          bottomRight: Radius.circular(27),
+                        ),
                       ),
                     ),
-                  ),
-                  const Icon(
-                    Icons.arrow_forward,
-                    color: Colors.black,
-                    size: 35,
-                  ),
-                ],
+                    const Icon(
+                      Icons.arrow_forward,
+                      color: Colors.black,
+                      size: 35,
+                    ),
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
   }
+
 
   Widget buildServiceCard({
     required String image,
