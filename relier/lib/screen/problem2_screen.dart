@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'problem3_screen.dart';
+import 'package:relier/screen/problem3_screen.dart';
+import 'problem4_screen.dart';
 
 class Problem2Screen extends StatefulWidget {
   const Problem2Screen({Key? key}) : super(key: key);
@@ -26,9 +27,15 @@ class _Problem2ScreenState extends State<Problem2Screen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color(0xFF1F1F1F),
-        title: const Text('Encanador'),
+        title: const Text(
+          'Encanador',
+          style: TextStyle(color: Colors.white),
+        ),
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
+          icon: const Icon(
+            Icons.arrow_back,
+            color: Colors.white,
+          ),
           onPressed: () {
             Navigator.pop(context);
           },
@@ -117,7 +124,7 @@ class _Problem2ScreenState extends State<Problem2Screen> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const Problem3Screen(),
+                        builder: (context) => Problem3Screen(),
                       ),
                     );
                   },

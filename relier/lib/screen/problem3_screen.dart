@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'problem6_screen.dart';
+import 'package:relier/screen/problem4_screen.dart';
 
-class Problem5Screen extends StatelessWidget {
-  const Problem5Screen({Key? key}) : super(key: key);
+class Problem3Screen extends StatelessWidget {
+  const Problem3Screen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -108,7 +108,7 @@ class Problem5Screen extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const Problem6Screen(),
+                      builder: (context) => const Problem4Screen(),
                     ),
                   );
                 },

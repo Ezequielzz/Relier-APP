@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:relier/screen/home_screen.dart';
+import 'package:relier/screen/navbar.dart';
 
 class ProblemFinalScreen extends StatelessWidget {
   const ProblemFinalScreen({Key? key}) : super(key: key);
@@ -27,7 +29,7 @@ class ProblemFinalScreen extends StatelessWidget {
                 IconButton(
                   icon: const Icon(Icons.close, color: Colors.white),
                   onPressed: () {
-                    Navigator.pop(context);
+                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (contextNew) =>  Navbar()));
                   },
                 ),
               ],

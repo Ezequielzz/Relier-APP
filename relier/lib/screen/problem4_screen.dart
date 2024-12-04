@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'problem4_screen.dart';
+import 'package:relier/screen/problemFinal_screen.dart';
 
-class Problem3Screen extends StatefulWidget {
-  const Problem3Screen({Key? key}) : super(key: key);
+class Problem4Screen extends StatefulWidget {
+  const Problem4Screen({Key? key}) : super(key: key);
 
   @override
-  _Problem3ScreenState createState() => _Problem3ScreenState();
+  _Problem4ScreenState createState() => _Problem4ScreenState();
 }
 
-class _Problem3ScreenState extends State<Problem3Screen> {
+class _Problem4ScreenState extends State<Problem4Screen> {
   // Lista de opções
   final List<String> _options = [
     'Casa',
@@ -121,7 +121,7 @@ class _Problem3ScreenState extends State<Problem3Screen> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const Problem4Screen(),
+                        builder: (context) => const ProblemFinalScreen(),
                       ),
                     );
                   },
