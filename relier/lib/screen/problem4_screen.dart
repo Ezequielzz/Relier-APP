@@ -1,21 +1,19 @@
 import 'package:flutter/material.dart';
-import 'problem5_screen.dart';
+import 'problem4_screen.dart';
 
-class Problem4Screen extends StatefulWidget {
-  const Problem4Screen({Key? key}) : super(key: key);
+class Problem3Screen extends StatefulWidget {
+  const Problem3Screen({Key? key}) : super(key: key);
 
   @override
-  _Problem4ScreenState createState() => _Problem4ScreenState();
+  _Problem3ScreenState createState() => _Problem3ScreenState();
 }
 
-class _Problem4ScreenState extends State<Problem4Screen> {
+class _Problem3ScreenState extends State<Problem3Screen> {
   // Lista de opções
   final List<String> _options = [
-    'Nos próximos 7 dias',
-    'Nos próximos 14 dias',
-    'Nos próximos 30 dias',
-    'Não tenho uma data definida',
-    'O quanto antes',
+    'Casa',
+    'Apartamento/Condomínio',
+    'Imóvel comercial',
   ];
 
   // Controla a opção selecionada
@@ -26,9 +24,15 @@ class _Problem4ScreenState extends State<Problem4Screen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color(0xFF1F1F1F),
-        title: const Text('Encanador'),
+        title: const Text(
+          'Encanador',
+          style: TextStyle(color: Colors.white),
+        ),
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
+          icon: const Icon(
+            Icons.arrow_back,
+            color: Colors.white,
+          ),
           onPressed: () {
             Navigator.pop(context);
           },
@@ -42,7 +46,7 @@ class _Problem4ScreenState extends State<Problem4Screen> {
             children: [
               // Imagem no topo
               Image.asset(
-                'assets/images/Calendar-bro(1).png',
+                'assets/images/Address-bro.png',
                 width: 300,
                 height: 300,
               ),
@@ -109,7 +113,6 @@ class _Problem4ScreenState extends State<Problem4Screen> {
                   ),
                 ),
               const SizedBox(height: 40),
-              // Botão "Continuar ->"
               SizedBox(
                 width: 230,
                 child: ElevatedButton(
@@ -118,7 +121,7 @@ class _Problem4ScreenState extends State<Problem4Screen> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const Problem5Screen(),
+                        builder: (context) => const Problem4Screen(),
                       ),
                     );
                   },
@@ -141,7 +144,6 @@ class _Problem4ScreenState extends State<Problem4Screen> {
                   ),
                 ),
               ),
-              const SizedBox(height: 20)
             ],
           ),
         ),
